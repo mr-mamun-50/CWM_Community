@@ -1,8 +1,12 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
 import 'dart:io';
 
 import 'package:coding_with_mamun_community/constant.dart';
+import 'package:coding_with_mamun_community/models/api_response.dart';
+import 'package:coding_with_mamun_community/screens/login.dart';
+import 'package:coding_with_mamun_community/services/post_service.dart';
+import 'package:coding_with_mamun_community/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -26,6 +30,28 @@ class _PostFormState extends State<PostForm> {
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  void _createPost() async {
+    String? image = _imageFile == null ? null : getStringImage(_imageFile);
+    ApiResponse apiResponse = await createPost(descController.text, image);
+
+    if (apiResponse.error == null) {
+      Navigator.of(context).pop();
+    } else if (apiResponse.error == unauthorized) {
+      logout().then((value) => {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const Login()),
+                (route) => false)
+          });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('${apiResponse.error}'),
+      ));
+      setState(() {
+        loading = !loading;
       });
     }
   }
@@ -77,9 +103,9 @@ class _PostFormState extends State<PostForm> {
             child: submitBtn("Add Post", loading, () {
               if (formKey.currentState!.validate()) {
                 setState(() {
-                  loading = true;
+                  loading = !loading;
                 });
-                // _addPost();
+                _createPost();
               }
             }),
           ),

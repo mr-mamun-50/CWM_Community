@@ -37,3 +37,26 @@ ElevatedButton submitBtn(String label, bool loading, Function onPressed) {
     onPressed: () => onPressed(),
   );
 }
+
+//__Likes & comments button__
+Expanded likesCommentsBtn(
+    int? value, IconData icon, Color color, Function onPressed) {
+  return Expanded(
+    child: Material(
+      child: InkWell(
+        onTap: () => onPressed(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: color),
+              const SizedBox(width: 5),
+              value != null ? Text('(${value.toString()})') : const SizedBox(),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
