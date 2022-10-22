@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Image.asset('images/logo_white.png', height: 30),
         centerTitle: true,
       ),
       body: Form(

@@ -3,7 +3,9 @@
 import 'package:coding_with_mamun_community/constant.dart';
 import 'package:coding_with_mamun_community/models/api_response.dart';
 import 'package:coding_with_mamun_community/models/post.dart';
+import 'package:coding_with_mamun_community/screens/comments.dart';
 import 'package:coding_with_mamun_community/screens/login.dart';
+import 'package:coding_with_mamun_community/screens/post_form.dart';
 import 'package:coding_with_mamun_community/services/post_service.dart';
 import 'package:coding_with_mamun_community/services/user_service.dart';
 import 'package:flutter/material.dart';
@@ -142,6 +144,11 @@ class _PostsState extends State<Posts> {
                                 ],
                                 onSelected: (val) {
                                   if (val == 'edit') {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => PostForm(
+                                                title: 'Edit Post',
+                                                post: post)));
                                   } else if (val == 'delete') {
                                     _handleDelete(post.id ?? 0);
                                   }
@@ -189,7 +196,11 @@ class _PostsState extends State<Posts> {
                             post.comments_count ?? 0,
                             Icons.comment,
                             Colors.black54,
-                            () {},
+                            () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      Comments(postId: post.id)));
+                            },
                           ),
                           Container(
                               height: 25, width: 0.5, color: Colors.black38),

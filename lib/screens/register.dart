@@ -54,7 +54,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: Image.asset('images/logo_white.png', height: 30),
         centerTitle: true,
       ),
       body: Form(

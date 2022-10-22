@@ -20,7 +20,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Coding With Mamun'),
+        title: Image.asset('images/logo_white.png', height: 30),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {},
@@ -28,11 +29,11 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: currentIndex == 0 ? Posts() : Profile(),
+      body: currentIndex == 0 ? const Posts() : const Profile(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const PostForm()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const PostForm(title: 'Create post')));
         },
         child: const Icon(Icons.add),
       ),

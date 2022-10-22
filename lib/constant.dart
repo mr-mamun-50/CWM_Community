@@ -7,7 +7,6 @@ const registerURL = '$baseURL/register';
 const logOutURL = '$baseURL/logout';
 const userURL = '$baseURL/user';
 const postsURL = '$baseURL/posts';
-const commentsURL = '$baseURL/comments';
 
 //__Error Messages__
 const serverError = 'Server Error';
