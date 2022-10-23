@@ -73,7 +73,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         backgroundImage: user!.image != null
                             ? NetworkImage('${user!.image}')
                             : const NetworkImage(
-                                'https://avatars.githubusercontent.com/u/76045663?v=4'),
+                                'https://www.pngitem.com/pimgs/m/130-1300253_female-user-icon-png-download-user-image-color.png'),
                       ),
                     ),
                   )

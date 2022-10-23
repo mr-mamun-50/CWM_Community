@@ -91,13 +91,6 @@ class _PostsState extends State<Posts> {
     super.initState();
   }
 
-  String formatDate(String dbDate) {
-    List<String> dateTimeList = dbDate.split(" ");
-    List<String> dateList = dateTimeList.first.split("_");
-    String dateTime = dateList.single;
-    return dateTime;
-  }
-
   @override
   Widget build(BuildContext context) {
     return loading
@@ -120,7 +113,8 @@ class _PostsState extends State<Posts> {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
-                        subtitle: Text(formatDate('${post.createdAt}')),
+                        subtitle: Text(
+                            '${'${post.createdAt}'.substring(0, 10)} | ${'${post.createdAt}'.substring(11, 16)}'),
                         leading: CircleAvatar(
                             backgroundImage: post.user!.image == null
                                 ? const NetworkImage(

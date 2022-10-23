@@ -115,12 +115,16 @@ class _ProfileState extends State<Profile> {
                                     image: NetworkImage('${user!.image}'),
                                     fit: BoxFit.cover,
                                   )
-                                : null
+                                : const DecorationImage(
+                                    image: AssetImage(
+                                        'https://www.pngitem.com/pimgs/m/130-1300253_female-user-icon-png-download-user-image-color.png'),
+                                    fit: BoxFit.cover,
+                                  )
                             : DecorationImage(
                                 image: FileImage(_imageFile ?? File('')),
                                 fit: BoxFit.cover,
                               ),
-                        color: Colors.grey[200],
+                        color: Colors.black12,
                       ),
                     ),
                     onTap: () {
