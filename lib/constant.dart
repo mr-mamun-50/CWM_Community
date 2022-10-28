@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //__Strings__
-const baseURL = 'http://cwm-community-api.herokuapp.com/public/api';
+const baseURL = 'http://192.168.42.3:8000/api';
 const loginURL = '$baseURL/login';
 const registerURL = '$baseURL/register';
 const logOutURL = '$baseURL/logout';

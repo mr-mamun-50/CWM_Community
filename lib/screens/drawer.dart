@@ -5,6 +5,7 @@ import 'package:coding_with_mamun_community/models/api_response.dart';
 import 'package:coding_with_mamun_community/models/user.dart';
 import 'package:coding_with_mamun_community/screens/home.dart';
 import 'package:coding_with_mamun_community/screens/login.dart';
+import 'package:coding_with_mamun_community/screens/profile.dart';
 import 'package:coding_with_mamun_community/services/user_service.dart';
 import 'package:flutter/material.dart';
 
@@ -75,6 +76,12 @@ class _AppDrawerState extends State<AppDrawer> {
                             : const NetworkImage(
                                 'https://www.pngitem.com/pimgs/m/130-1300253_female-user-icon-png-download-user-image-color.png'),
                       ),
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const Profile()),
+                            (route) => true);
+                      },
                     ),
                   )
                 : const Center(child: CircularProgressIndicator()),

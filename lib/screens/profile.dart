@@ -96,63 +96,68 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? const Center(child: CircularProgressIndicator())
-        : Padding(
-            padding: const EdgeInsets.only(top: 40, left: 30, right: 30),
-            child: ListView(
-              children: [
-                Center(
-                  child: GestureDetector(
-                    child: Container(
-                      width: 110,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: _imageFile == null
-                            ? user!.image != null
-                                ? DecorationImage(
-                                    image: NetworkImage('${user!.image}'),
-                                    fit: BoxFit.cover,
-                                  )
-                                : const DecorationImage(
-                                    image: AssetImage(
-                                        'https://www.pngitem.com/pimgs/m/130-1300253_female-user-icon-png-download-user-image-color.png'),
-                                    fit: BoxFit.cover,
-                                  )
-                            : DecorationImage(
-                                image: FileImage(_imageFile ?? File('')),
-                                fit: BoxFit.cover,
-                              ),
-                        color: Colors.black12,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      body: loading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: const EdgeInsets.only(top: 40, left: 30, right: 30),
+              child: ListView(
+                children: [
+                  Center(
+                    child: GestureDetector(
+                      child: Container(
+                        width: 110,
+                        height: 110,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: _imageFile == null
+                              ? user!.image != null
+                                  ? DecorationImage(
+                                      image: NetworkImage('${user!.image}'),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const DecorationImage(
+                                      image: AssetImage(
+                                          'https://www.pngitem.com/pimgs/m/130-1300253_female-user-icon-png-download-user-image-color.png'),
+                                      fit: BoxFit.cover,
+                                    )
+                              : DecorationImage(
+                                  image: FileImage(_imageFile ?? File('')),
+                                  fit: BoxFit.cover,
+                                ),
+                          color: Colors.black12,
+                        ),
                       ),
+                      onTap: () {
+                        getImage();
+                      },
                     ),
-                    onTap: () {
-                      getImage();
-                    },
                   ),
-                ),
-                const SizedBox(height: 40),
-                Form(
-                  key: formKey,
-                  child: TextFormField(
-                    controller: nameController,
-                    decoration: inputDecoration('Name'),
-                    validator: (value) =>
-                        value!.isEmpty ? 'Invalid name' : null,
+                  const SizedBox(height: 40),
+                  Form(
+                    key: formKey,
+                    child: TextFormField(
+                      controller: nameController,
+                      decoration: inputDecoration('Name'),
+                      validator: (value) =>
+                          value!.isEmpty ? 'Invalid name' : null,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                submitBtn('Save changes', loading, () {
-                  if (formKey.currentState!.validate()) {
-                    setState(() {
-                      loading = true;
-                    });
-                    updateProfile();
-                  }
-                })
-              ],
+                  const SizedBox(height: 20),
+                  submitBtn('Save changes', loading, () {
+                    if (formKey.currentState!.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
+                      updateProfile();
+                    }
+                  })
+                ],
+              ),
             ),
-          );
+    );
   }
 }

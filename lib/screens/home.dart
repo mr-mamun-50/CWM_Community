@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:coding_with_mamun_community/screens/drawer.dart';
+import 'package:coding_with_mamun_community/screens/messenger.dart';
 import 'package:coding_with_mamun_community/screens/post_form.dart';
 import 'package:coding_with_mamun_community/screens/posts.dart';
 import 'package:coding_with_mamun_community/screens/profile.dart';
@@ -24,12 +25,16 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const Profile()),
+                  (route) => true);
+            },
+            icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
-      body: currentIndex == 0 ? const Posts() : const Profile(),
+      body: currentIndex == 0 ? const Posts() : const Messenger(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -50,8 +55,8 @@ class _HomeState extends State<Home> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
+              icon: Icon(Icons.whatshot),
+              label: 'Messenger',
             ),
           ],
           currentIndex: currentIndex,
